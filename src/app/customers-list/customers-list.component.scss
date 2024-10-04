@@ -1,0 +1,155 @@
+$dp-blue-dark: #022030;
+$dp-blue: #82b8d5;
+$dp-grey-dark: #8898aa;
+$dp-gray: #d9d9d9;
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+
+  header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+
+    .header-left img {
+      width: 100px;
+    }
+
+    .header-right {
+      display: flex;
+    }
+
+    .nav-options {
+      background-color: transparent;
+      color: black;
+      border: none;
+      padding: 8px 16px;
+      border-radius: 5px;
+      cursor: pointer;
+      color: $dp-blue-dark;
+      text-transform: uppercase;
+      font-weight: bold;
+    }
+  }
+
+  .buttons {
+    display: flex;
+    justify-content: flex-end;
+
+    button {
+      background-color: transparent;
+      border: none;
+      cursor: pointer;
+      font-size: 16px;
+      color: $dp-blue-dark;
+    }
+
+    .button-add-user {
+      background-color: $dp-gray;
+      border: none;
+      padding: 8px 16px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+
+  }
+
+  .add-button {
+    margin: 20px 0;
+    padding: 10px 15px;
+    background-color: $dp-blue-dark;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+
+    &:hover {
+      background-color: darken($dp-blue-dark, 10%);
+    }
+  }
+
+  .card {
+    border: 1px solid $dp-gray;
+    border-radius: 5px;
+    margin-top: 20px;
+    overflow: hidden;
+
+    .card-body {
+      padding: 20px;
+      background-color: white;
+    }
+
+    .table {
+      width: 100%;
+      border-collapse: collapse;
+
+      thead {
+        background-color: $dp-blue-dark;
+        color: white;
+        text-align: left;
+
+        th {
+          padding: 12px 15px;
+        }
+      }
+
+      tbody {
+        tr {
+          &:nth-child(even) {
+            background-color: $dp-gray;
+          }
+
+          td {
+            padding: 12px 15px;
+            border-top: 1px solid $dp-gray;
+
+            .text-muted {
+              color: $dp-grey-dark;
+            }
+
+            .category-select {
+              width: 100%;
+              padding: 8px;
+              border-radius: 4px;
+              border: 1px solid $dp-gray;
+            }
+
+            .btn-circle {
+              border-radius: 100%;
+              width: 40px;
+              height: 40px;
+              padding: 10px;
+              background-color: transparent;
+              border: 1px solid $dp-blue-dark;
+              color: $dp-blue-dark;
+              cursor: pointer;
+
+              &:hover {
+                background-color: $dp-blue;
+              }
+
+              &.btn-lg {
+                width: 50px;
+                height: 50px;
+                margin-left: 5px;
+                padding: 5px 5px;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .footer {
+
+    padding: 10px;
+    text-align: center;
+    margin-top: 20px;
+  }
+}

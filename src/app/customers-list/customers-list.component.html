@@ -1,0 +1,76 @@
+<link
+  href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+  rel="stylesheet"
+/>
+
+<div class="container">
+  <header>
+    <div class="header-left">
+      <img src="assets/DeclaraProIcon.png" />
+    </div>
+    <div class="header-right">
+      <button class="nav-options" id="dashboardBtn">Dashboard</button>
+    </div>
+  </header>
+
+  <div class="buttons">
+    <button class="button-add-user">Adicionar novo cliente</button>
+  </div>
+  <div class="card containerbody">
+    <div class="table">
+      <table class="table no-wrap mb-0">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Nome</th>
+            <th scope="col">Email</th>
+            <th scope="col">Telefone</th>
+            <th scope="col">Status</th>
+            <th scope="col">Gerenciar</th>
+          </tr>
+        </thead>
+        <tbody *ngFor="let customer of customers$ | async">
+          <tr>
+            <td>{{ customer.id }}</td>
+            <td>
+              <h5 class="font-medium mb-0">{{ customer.name }}</h5>
+            </td>
+            <td>
+              <span class="text-muted">{{ customer.email }}</span
+              ><br />
+            </td>
+            <td>
+              <span class="text-muted">{{ customer.phone }}</span>
+            </td>
+            <td>
+              <select
+                class="form-control category-select"
+                id="exampleFormControlSelect1"
+              >
+                <option>Em Análise</option>
+                <option>Declaração Enviada</option>
+                <option>Concluído</option>
+                <option>Documento Pendente</option>
+              </select>
+            </td>
+            <td>
+              <button type="button" class="btn-circle btn-lg">
+                <i class="fa fa-search"></i>
+              </button>
+              <button type="button" class="btn-circle btn-lg">
+                <i class="fa fa-edit"></i>
+              </button>
+              <button type="button" class="btn-circle btn-lg">
+                <i class="fa fa-trash"></i>
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="footer">
+    <p>&copy; 2024 - DeclaraPro</p>
+  </div>
+</div>

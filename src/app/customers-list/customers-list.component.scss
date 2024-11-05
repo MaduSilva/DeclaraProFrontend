@@ -1,39 +1,9 @@
-$dp-blue-dark: #022030;
-$dp-blue: #82b8d5;
-$dp-grey-dark: #8898aa;
-$dp-gray: #d9d9d9;
+@import '../styles/colors.scss';
 
 .container {
   max-width: 1200px;
   margin: 0 auto;
   padding: 20px;
-
-  header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px 20px;
-
-    .header-left img {
-      width: 100px;
-    }
-
-    .header-right {
-      display: flex;
-    }
-
-    .nav-options {
-      background-color: transparent;
-      color: black;
-      border: none;
-      padding: 8px 16px;
-      border-radius: 5px;
-      cursor: pointer;
-      color: $dp-blue-dark;
-      text-transform: uppercase;
-      font-weight: bold;
-    }
-  }
 
   .buttons {
     display: flex;

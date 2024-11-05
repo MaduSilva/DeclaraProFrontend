@@ -1,22 +1,17 @@
-<link
-  href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
-  rel="stylesheet"
-/>
-
 <div class="container">
-  <header>
-    <div class="header-left">
-      <img src="assets/DeclaraProIcon.png" />
-    </div>
-    <div class="header-right">
-      <button class="nav-options" id="dashboardBtn">Dashboard</button>
-    </div>
-  </header>
-
   <div class="buttons">
-    <button class="button-add-user">Adicionar novo cliente</button>
+    <button (click)="handleAddNewCustomer()" class="button-add-user">
+      Adicionar novo cliente
+    </button>
   </div>
   <div class="card containerbody">
+    <app-add-customer-modal
+      [visible]="showAddCustomerModal"
+      [customerData]="customerData"
+      (close)="closeAddCustomerModal()"
+      (addCustomer)="addNewCustomer($event)"
+    >
+    </app-add-customer-modal>
     <div class="table">
       <table class="table no-wrap mb-0">
         <thead>
@@ -54,7 +49,11 @@
               </select>
             </td>
             <td>
-              <button type="button" class="btn-circle btn-lg">
+              <button
+                (click)="goToCustomerDetails(customer)"
+                type="button"
+                class="btn-circle btn-lg"
+              >
                 <i class="fa fa-search"></i>
               </button>
               <button type="button" class="btn-circle btn-lg">
@@ -70,6 +69,7 @@
     </div>
   </div>
 
+  <!-- TODO: Criar um componente único pro footer -->
   <div class="footer">
     <p>&copy; 2024 - DeclaraPro</p>
   </div>

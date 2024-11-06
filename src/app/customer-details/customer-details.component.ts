@@ -1,11 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ICustomerData } from '../customers-list/add-customer-modal/customer.data';
+import { DocumentUploadComponent } from './document-upload/document-upload.component';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-customer-details',
   standalone: true,
-  imports: [],
+  imports: [DocumentUploadComponent, CommonModule],
   templateUrl: './customer-details.component.html',
   styleUrl: './customer-details.component.scss',
 })

@@ -8,18 +8,25 @@ import {
   ICustomerData,
 } from './add-customer-modal/customer.data';
 import { Router } from '@angular/router';
+import { ConfirmDeleteModalComponent } from './confirm-delete-modal/confirm-delete-modal.component';
 
 @Component({
   selector: 'app-customers-list',
   standalone: true,
-  imports: [CommonModule, AddCustomerModalComponent],
+  imports: [
+    CommonModule,
+    AddCustomerModalComponent,
+    ConfirmDeleteModalComponent,
+  ],
   templateUrl: './customers-list.component.html',
   styleUrls: ['./customers-list.component.scss'],
 })
 export class CustomersListComponent implements OnInit {
   customers$: Observable<ICustomerData[]> | null = null;
   showAddCustomerModal = false;
+  showConfirmDeleteModal = false;
   customerData: ICustomerData = { ...DEFAULT_CUSTOMER_DATA };
+  customerToDelete: ICustomerData | undefined;
 
   constructor(
     private router: Router,
@@ -45,31 +52,56 @@ export class CustomersListComponent implements OnInit {
     this.customerData = { ...DEFAULT_CUSTOMER_DATA };
   }
 
+  openConfirmDeleteModal(customer: ICustomerData): void {
+    this.customerToDelete = customer;
+    this.showConfirmDeleteModal = true;
+  }
+
+  closeConfirmDeleteModal(): void {
+    this.showConfirmDeleteModal = false;
+    this.customerToDelete = undefined;
+  }
+
   goToCustomerDetails(customer: ICustomerData): void {
     this.router.navigate([`/customers/${customer.id}`], {
       state: { customer },
     });
   }
 
-  addNewCustomer(customerData: ICustomerData): void {
+  addNewCustomer(customerData: any): void {
     this.customerService
       .addCustomer(customerData)
-      .pipe(
-        switchMap(() => this.customerService.getCustomers()),
-        map((response) => response.data)
-      )
-      .subscribe(
-        //TODO: Substituir esse subscribe pois tá deprecated
-        (updatedCustomers) => {
+      .pipe(switchMap(() => this.customerService.getCustomers()))
+      .subscribe({
+        next: (response) => {
+          const updatedCustomers = response.data;
           this.customers$ = new Observable((observer) => {
             observer.next(updatedCustomers);
             observer.complete();
           });
           this.closeAddCustomerModal();
         },
-        (error) => {
-          console.error('addNewCostumer error', error);
-        }
-      );
+        error: (error) => {
+          console.error('addNewCustomer error', error);
+        },
+      });
+  }
+
+  deleteCustomer(customerId: any): void {
+    this.customerService
+      .deleteCustomer(customerId)
+      .pipe(switchMap(() => this.customerService.getCustomers()))
+      .subscribe({
+        next: (response) => {
+          this.customers$ = new Observable<ICustomerData[]>((observer) => {
+            observer.next(response.data);
+            observer.complete();
+          });
+          this.closeConfirmDeleteModal();
+        },
+        error: (error) => {
+          console.error('deleteCustomer error', error);
+        },
+      });
   }
 }

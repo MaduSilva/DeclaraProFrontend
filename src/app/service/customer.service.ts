@@ -36,4 +36,17 @@ export class CustomerService {
       })
     );
   }
+
+  deleteCustomer(customerId: any): Observable<AxiosResponse<any>> {
+    return from(
+      axios.delete<any>(
+        this.apiUrl + ENDPOINTS.CUSTOMERS.DELETE_CUSTOMER(customerId)
+      )
+    ).pipe(
+      catchError((error) => {
+        console.error('deleteCustomer error', error);
+        throw error;
+      })
+    );
+  }
 }

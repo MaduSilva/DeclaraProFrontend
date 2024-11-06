@@ -12,6 +12,13 @@
       (addCustomer)="addNewCustomer($event)"
     >
     </app-add-customer-modal>
+    <app-confirm-delete-modal
+      *ngIf="showConfirmDeleteModal"
+      [customerName]="customerToDelete?.name"
+      (confirmDeletion)="deleteCustomer(customerToDelete?.id)"
+      (closeModal)="closeConfirmDeleteModal()"
+    >
+    </app-confirm-delete-modal>
     <div class="table">
       <table class="table no-wrap mb-0">
         <thead>
@@ -56,10 +63,11 @@
               >
                 <i class="fa fa-search"></i>
               </button>
-              <button type="button" class="btn-circle btn-lg">
-                <i class="fa fa-edit"></i>
-              </button>
-              <button type="button" class="btn-circle btn-lg">
+              <button
+                (click)="openConfirmDeleteModal(customer)"
+                type="button"
+                class="btn-circle btn-lg"
+              >
                 <i class="fa fa-trash"></i>
               </button>
             </td>

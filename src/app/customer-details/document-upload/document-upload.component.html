@@ -1,0 +1,50 @@
+<div class="document-upload">
+  <input
+    type="file"
+    id="document"
+    (change)="onFileSelected($event)"
+    accept=".jpg,.png,.pdf"
+  />
+
+  <button type="button" (click)="onUpload()" [disabled]="!selectedFile">
+    Enviar
+  </button>
+
+  <div class="uploaded-documents" *ngIf="documents.length > 0">
+    <h3>Documentos do cliente:</h3>
+    <ul>
+      <li *ngFor="let document of documents">
+        <div class="document-item">
+          <span>{{ document.name }} ({{ document.document_type }})</span>
+
+          <!-- <div *ngIf="document.document_type === 'pdf'">
+            <iframe
+              *ngIf="document.viewingDocumentUrl"
+              [src]="document.viewingDocumentUrl | safeUrl : 'resource'"
+              width="200"
+              height="200"
+            ></iframe>
+          </div>
+
+          <div
+            *ngIf="
+              document.document_type === 'jpg' ||
+              document.document_type === 'png'
+            "
+          >
+            <img
+              *ngIf="document.viewingDocumentUrl"
+              [src]="document.viewingDocumentUrl | safeUrl"
+              alt="Document Image"
+              width="200"
+            />
+          </div> -->
+
+          <button (click)="downloadDocument(document)">Baixar</button>
+          <button (click)="deleteDocument(document)">Deletar</button>
+          <button (click)="renameDocument(document)">Renomear</button>
+        </div>
+      </li>
+    </ul>
+  </div>
+</div>

@@ -1,0 +1,54 @@
+<div class="document-upload">
+  <h3>Cadastro de documentos</h3>
+  <input
+    type="file"
+    id="document"
+    (change)="onFileSelected($event)"
+    accept=".jpg,.png,.pdf"
+  />
+
+  <button type="button" (click)="onUpload()" [disabled]="!selectedFile">
+    Enviar
+  </button>
+
+  <div class="uploaded-documents" *ngIf="documents.length > 0">
+    <ul>
+      <li *ngFor="let document of documents">
+        <div class="document-item">
+          <span>{{ document.name }}</span>
+
+          <div class="documents-buttons">
+            <button (click)="downloadDocument(document)" type="button">
+              Baixar Documento
+            </button>
+
+            <button (click)="deleteDocument(customer.id, document.id)">
+              Deletar
+            </button>
+          </div>
+
+          <img
+            *ngIf="
+              (document.viewingDocumentUrl && document.name.endsWith('.jpg')) ||
+              document.name.endsWith('.png')
+            "
+            [src]="document.viewingDocumentUrl"
+            alt="Document Image"
+            class="small-image"
+          />
+
+          <div
+            *ngIf="
+              document.viewingDocumentUrl && document.name.endsWith('.pdf')
+            "
+          >
+            <iframe
+              [src]="document.viewingDocumentUrl"
+              class="pdf-iframe"
+            ></iframe>
+          </div>
+        </div>
+      </li>
+    </ul>
+  </div>
+</div>

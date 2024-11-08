@@ -1,0 +1,72 @@
+@import '../../styles/colors.scss';
+
+.login-container {
+    max-width: 400px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: $dp-gray-light;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+
+    h2 {
+        font-size: 24px;
+        color: $dp-blue-dark;
+        margin-bottom: 20px;
+    }
+
+    .input-group {
+        margin-bottom: 15px;
+        text-align: left;
+
+        label {
+            font-size: 14px;
+            color: $dp-gray-dark;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px;
+            border-radius: 5px;
+            border: 1px solid $dp-gray;
+            font-size: 16px;
+            color: $dp-black-light;
+            background-color: #fff;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+
+            &:focus {
+                border-color: $dp-blue-vivid;
+                box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+                outline: none;
+            }
+        }
+    }
+
+    button {
+        width: 100%;
+        padding: 12px;
+        background-color: $dp-blue-vivid;
+        color: white;
+        font-size: 16px;
+        border-radius: 5px;
+        border: none;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+
+        &:hover {
+            background-color: darken($dp-blue-vivid, 10%);
+        }
+
+        &:focus {
+            outline: none;
+        }
+    }
+
+    .error {
+        margin-top: 10px;
+        color: #ff3333;
+        font-size: 14px;
+    }
+}

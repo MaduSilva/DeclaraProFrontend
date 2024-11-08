@@ -1,4 +1,4 @@
-@import '../styles/colors.scss';
+@import '../../styles/colors.scss';
 
 .container {
   max-width: 1200px;
@@ -79,7 +79,7 @@
             border-top: 1px solid $dp-gray;
 
             .text-muted {
-              color: $dp-grey-dark;
+              color: $dp-gray-dark;
             }
 
             .category-select {

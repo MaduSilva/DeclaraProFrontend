@@ -1,0 +1,35 @@
+<div class="customer-details-container">
+  <h2>{{ (customer$ | async)?.name }}</h2>
+
+  <div class="customer-info">
+    <label>Email:</label>
+    <p>{{ (customer$ | async)?.email }}</p>
+  </div>
+
+  <div class="customer-info">
+    <label>Telefone:</label>
+    <p>{{ (customer$ | async)?.phone }}</p>
+  </div>
+
+  <div class="customer-info">
+    <label>CPF:</label>
+    <p>{{ (customer$ | async)?.cpf }}</p>
+  </div>
+
+  <div class="customer-info">
+    <label>Data de nascimento:</label>
+    <p>{{ (customer$ | async)?.birthDate }}</p>
+  </div>
+
+  <div class="customer-info">
+    <label>Status:</label>
+    <p>{{ (customer$ | async)?.status }}</p>
+  </div>
+
+  <div class="document-upload">
+    <app-document-upload
+      *ngIf="customer$ | async as customer"
+      [customer]="customer"
+    ></app-document-upload>
+  </div>
+</div>

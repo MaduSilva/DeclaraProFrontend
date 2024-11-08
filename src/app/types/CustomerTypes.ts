@@ -1,3 +1,5 @@
+import { IDocumentData } from './DocumentTypes';
+
 export interface ICustomerData {
   id: number;
   name: string;
@@ -6,6 +8,7 @@ export interface ICustomerData {
   cpf: string;
   birthDate: string;
   status: string;
+  documents?: IDocumentData[];
 }
 
 export const DEFAULT_CUSTOMER_DATA: ICustomerData = {

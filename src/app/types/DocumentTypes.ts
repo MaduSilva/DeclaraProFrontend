@@ -4,3 +4,9 @@ export enum DocumentTypes {
   JPG = 'image/jpeg',
   PNG = 'image/png',
 }
+
+export interface IDocumentData {
+  id: number;
+  name: string;
+  file: string;
+}

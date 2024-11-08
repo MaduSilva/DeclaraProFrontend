@@ -7,11 +7,12 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
     <div class="modal-overlay">
       <div class="modal-content">
         <h3>
-          Are you sure you want to delete the customer: {{ customerName }}?
+          Você tem certeza que deseja excluir o cliente <br />
+          {{ customerName }}?
         </h3>
         <div class="modal-buttons">
-          <button (click)="onConfirm()">Yes</button>
-          <button (click)="onCancel()">No</button>
+          <button (click)="onConfirm()">Sim</button>
+          <button (click)="onCancel()">Não</button>
         </div>
       </div>
     </div>
@@ -31,6 +32,7 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
       }
       .modal-content {
         background: white;
+        max-width: 50%;
         padding: 20px;
         border-radius: 5px;
         text-align: center;
@@ -50,6 +52,9 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
       }
       button:hover {
         background-color: #0056b3;
+      }
+      h3 {
+        font-size: 1.5rem;
       }
     `,
   ],

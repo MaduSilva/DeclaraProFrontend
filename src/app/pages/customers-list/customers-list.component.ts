@@ -40,7 +40,7 @@ export class CustomersListComponent implements OnInit {
   loadCustomers(): void {
     this.customers$ = this.customerService
       .getCustomers()
-      .pipe(map((response) => response.data));
+      .pipe(map((response) => response.data.reverse()));
   }
 
   handleAddNewCustomer(): void {

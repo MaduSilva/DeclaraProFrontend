@@ -3,11 +3,13 @@ import { CustomersListComponent } from './pages/customers-list/customers-list.co
 import { CustomerDetailsComponent } from './pages/customer-details/customer-details.component';
 import { LoginComponent } from './pages/login/login.component';
 import { AuthGuard } from './service/auth/auth.guard';
+import { LoginGuard } from './service/auth/login.guard';
 
 export const routes: Routes = [
   {
     path: 'login',
     component: LoginComponent,
+    canActivate: [LoginGuard]
   },
   {
     path: 'customers',

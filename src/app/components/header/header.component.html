@@ -1,14 +1,19 @@
-<link
-  href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
-  rel="stylesheet"
-/>
 <header>
   <div class="header-left">
     <img src="assets/DeclaraProIcon.png" />
   </div>
   <div class="header-right">
-    <button class="nav-options" id="dashboardBtn" (click)="goToCustomers()">
+    <button
+      *ngIf="isLoggedIn"
+      class="nav-options"
+      id="dashboardBtn"
+      (click)="goToCustomers()"
+    >
       Dashboard
+    </button>
+
+    <button *ngIf="isLoggedIn" class="nav-options" (click)="logout()">
+      <span class="material-icons">logout</span>
     </button>
   </div>
 </header>

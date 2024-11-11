@@ -80,16 +80,18 @@ export class DocumentUploadComponent implements OnInit {
 
   ngOnInit() {
     if (this.customer && this.customer.documents) {
-      this.documents = this.customer.documents.map((doc: IDocumentData) => {
-        return {
-          ...doc,
-          viewingDocumentUrl: doc.file
-            ? this.sanitizer.bypassSecurityTrustResourceUrl(
-                `${environment.apiUrl}${doc.file}`
-              )
-            : '',
-        };
-      });
+      this.documents = this.customer.documents
+        .map((doc: IDocumentData) => {
+          return {
+            ...doc,
+            viewingDocumentUrl: doc.file
+              ? this.sanitizer.bypassSecurityTrustResourceUrl(
+                  `${environment.apiUrl}${doc.file}`
+                )
+              : '',
+          };
+        })
+        .reverse();
     }
   }
 

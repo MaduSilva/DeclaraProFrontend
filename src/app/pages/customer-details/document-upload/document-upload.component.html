@@ -4,7 +4,7 @@
     type="file"
     id="document"
     (change)="onFileSelected($event)"
-    accept=".jpg,.png,.pdf"
+    accept=".jpg,.jpeg,.png,.pdf"
   />
 
   <button type="button" (click)="onUpload()" [disabled]="!selectedFile">
@@ -29,8 +29,10 @@
 
           <img
             *ngIf="
-              (document.viewingDocumentUrl && document.name.endsWith('.jpg')) ||
-              document.name.endsWith('.png')
+              document.viewingDocumentUrl &&
+              (document.name.endsWith('.jpg') ||
+                document.name.endsWith('.png') ||
+                document.name.endsWith('.jpeg'))
             "
             [src]="document.viewingDocumentUrl"
             alt="Document Image"

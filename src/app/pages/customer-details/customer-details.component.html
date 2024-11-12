@@ -1,29 +1,108 @@
 <div class="customer-details-container">
-  <h2>{{ (customer$ | async)?.name }}</h2>
+  <div class="header">
+    <h2 *ngIf="!isEditing">{{ (customer$ | async)?.name }}</h2>
+    <input
+      *ngIf="isEditing"
+      [(ngModel)]="editableCustomer.name"
+      placeholder="Nome"
+    />
+    <button class="edit-button" (click)="toggleEditMode()">
+      <mat-icon>{{ isEditing ? "close" : "edit" }}</mat-icon>
+    </button>
+  </div>
 
   <div class="customer-info">
     <label>Email:</label>
-    <p>{{ (customer$ | async)?.email }}</p>
+    <ng-container *ngIf="isEditing; else viewEmail">
+      <input [(ngModel)]="editableCustomer.email" />
+    </ng-container>
+    <ng-template #viewEmail>
+      <p>{{ (customer$ | async)?.email }}</p>
+    </ng-template>
   </div>
 
   <div class="customer-info">
     <label>Telefone:</label>
-    <p>{{ (customer$ | async)?.phone }}</p>
+    <ng-container *ngIf="isEditing; else viewPhone">
+      <input [(ngModel)]="editableCustomer.phone" />
+    </ng-container>
+    <ng-template #viewPhone>
+      <p>{{ (customer$ | async)?.phone }}</p>
+    </ng-template>
   </div>
 
   <div class="customer-info">
     <label>CPF:</label>
-    <p>{{ (customer$ | async)?.cpf }}</p>
+    <ng-container *ngIf="isEditing; else viewCPF">
+      <input [(ngModel)]="editableCustomer.cpf" />
+    </ng-container>
+    <ng-template #viewCPF>
+      <p>{{ (customer$ | async)?.cpf }}</p>
+    </ng-template>
   </div>
 
   <div class="customer-info">
     <label>Data de nascimento:</label>
-    <p>{{ (customer$ | async)?.birthDate }}</p>
+    <ng-container *ngIf="isEditing; else viewBirthDate">
+      <input type="date" [(ngModel)]="editableCustomer.birthDate" />
+    </ng-container>
+    <ng-template #viewBirthDate>
+      <p>{{ (customer$ | async)?.birthDate }}</p>
+    </ng-template>
   </div>
 
   <div class="customer-info">
     <label>Status:</label>
-    <p>{{ (customer$ | async)?.status }}</p>
+    <ng-container *ngIf="isEditing; else viewStatus">
+      <select [(ngModel)]="editableCustomer.status">
+        <option value="Em Análise">Em Análise</option>
+        <option value="Declaração Enviada">Declaração Enviada</option>
+        <option value="Concluído">Concluído</option>
+        <option value="Documento Pendente">Documento Pendente</option>
+      </select>
+    </ng-container>
+    <ng-template #viewStatus>
+      <p>{{ (customer$ | async)?.status }}</p>
+    </ng-template>
+  </div>
+
+  <button
+    *ngIf="isEditing"
+    mat-raised-button
+    color="primary"
+    (click)="editCustomerInfo()"
+  >
+    Salvar
+  </button>
+
+  <div class="credentials-box">
+    <h3>Credenciais de Acesso do Cliente</h3>
+
+    <button mat-raised-button color="accent" (click)="openResetPasswordModal()">
+      Redefinir Senha
+    </button>
+  </div>
+
+  <div *ngIf="isPasswordResetModalOpen" class="password-reset-modal">
+    <div class="modal-content">
+      <h3>Redefinir Senha</h3>
+      <input
+        type="password"
+        [(ngModel)]="newPassword"
+        placeholder="Digite a nova senha"
+        class="password-input"
+      />
+      <button mat-raised-button color="primary" (click)="resetPassword()">
+        Redefinir
+      </button>
+      <button
+        mat-raised-button
+        color="warn"
+        (click)="closeResetPasswordModal()"
+      >
+        Cancelar
+      </button>
+    </div>
   </div>
 
   <div class="document-upload">

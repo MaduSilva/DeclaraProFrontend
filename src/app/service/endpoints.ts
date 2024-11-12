@@ -5,6 +5,7 @@ export const ENDPOINTS = {
     ADD_CUSTOMER: '/customers/add/',
     DELETE_CUSTOMER: (id: number) => `/customers/remove/${id}/`,
     EDIT_CUSTOMER: (id: number) => `/customers/edit/${id}/`,
+    RESET_PASSWORD_CUSTOMER: (id: number) => `/customers/reset-password/${id}/`,
   },
   DOCUMENTS: {
     ADD_DOCUMENT: (id: number) => `/customers/${id}/documents/add/`,

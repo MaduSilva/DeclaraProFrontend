@@ -67,4 +67,23 @@ export class CustomerService {
       })
     );
   }
+
+  editPasswordCustomer(
+    customerId: number,
+    newPassword: string
+  ): Observable<AxiosResponse<any>> {
+    const body = { password: newPassword };
+    console.log(customerId);
+    return from(
+      api.patch<any>(
+        `${ENDPOINTS.CUSTOMERS.RESET_PASSWORD_CUSTOMER(customerId)}`,
+        body
+      )
+    ).pipe(
+      catchError((error) => {
+        console.error('editPasswordCustomer error', error);
+        throw error;
+      })
+    );
+  }
 }

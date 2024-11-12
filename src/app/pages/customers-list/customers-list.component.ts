@@ -82,8 +82,12 @@ export class CustomersListComponent implements OnInit {
             observer.complete();
           });
           this.closeAddCustomerModal();
+          alert('Cliente cadastrado com sucesso');
         },
         error: (error: any) => {
+          alert(
+            'Erro ao atualizar dados do cliente, tente novamente mais tarde.'
+          );
           console.error('addNewCustomer error', error);
         },
       });
@@ -126,6 +130,7 @@ export class CustomersListComponent implements OnInit {
             observer.complete();
           });
           this.closeConfirmDeleteModal();
+          alert('Cliente removido com sucesso');
         },
         error: (error: any) => {
           console.error('deleteCustomer error', error);

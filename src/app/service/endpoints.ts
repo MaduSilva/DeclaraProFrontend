@@ -4,6 +4,7 @@ export const ENDPOINTS = {
     GET_ONE: (id: number) => `/customers/${id}/`,
     ADD_CUSTOMER: '/customers/add/',
     DELETE_CUSTOMER: (id: number) => `/customers/remove/${id}/`,
+    EDIT_CUSTOMER: (id: number) => `/customers/edit/${id}/`,
   },
   DOCUMENTS: {
     ADD_DOCUMENT: (id: number) => `/customers/${id}/documents/add/`,

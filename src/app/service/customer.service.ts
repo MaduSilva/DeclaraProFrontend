@@ -53,4 +53,18 @@ export class CustomerService {
       })
     );
   }
+
+  editCustomer(
+    customerId: number,
+    updatedData: any
+  ): Observable<AxiosResponse<any>> {
+    return from(
+      api.patch<any>(ENDPOINTS.CUSTOMERS.EDIT_CUSTOMER(customerId), updatedData)
+    ).pipe(
+      catchError((error) => {
+        console.error('editCustomer error', error);
+        throw error;
+      })
+    );
+  }
 }

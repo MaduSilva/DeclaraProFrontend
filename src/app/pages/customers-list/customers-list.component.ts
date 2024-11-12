@@ -9,6 +9,7 @@ import {
 } from '../../types/CustomerTypes';
 import { Router } from '@angular/router';
 import { ConfirmDeleteModalComponent } from './confirm-delete-modal/confirm-delete-modal.component';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-customers-list',
@@ -17,6 +18,7 @@ import { ConfirmDeleteModalComponent } from './confirm-delete-modal/confirm-dele
     CommonModule,
     AddCustomerModalComponent,
     ConfirmDeleteModalComponent,
+    FormsModule,
   ],
   templateUrl: './customers-list.component.html',
   styleUrls: ['./customers-list.component.scss'],
@@ -40,7 +42,7 @@ export class CustomersListComponent implements OnInit {
   loadCustomers(): void {
     this.customers$ = this.customerService
       .getCustomers()
-      .pipe(map((response) => response.data.reverse()));
+      .pipe(map((response) => response.data));
   }
 
   handleAddNewCustomer(): void {
@@ -85,6 +87,32 @@ export class CustomersListComponent implements OnInit {
           console.error('addNewCustomer error', error);
         },
       });
+  }
+
+  editCustomer(customerId: any, updatedData: { status: string }): void {
+    this.customerService
+      .editCustomer(customerId, updatedData)
+      .pipe(switchMap(() => this.customerService.getCustomers()))
+      .subscribe({
+        next: (response: any) => {
+          this.customers$ = new Observable<ICustomerData[]>((observer) => {
+            observer.next(response.data);
+            observer.complete();
+          });
+        },
+        error: (error: any) => {
+          console.error('editCustomer error', error);
+        },
+      });
+  }
+
+  handleStatusChange(customerId: number, event: Event): void {
+    const target = event.target as HTMLSelectElement;
+    const newStatus = target?.value || '';
+
+    if (newStatus) {
+      this.editCustomer(customerId, { status: newStatus });
+    }
   }
 
   deleteCustomer(customerId: any): void {

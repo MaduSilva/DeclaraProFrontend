@@ -48,11 +48,17 @@
               <select
                 class="form-control category-select"
                 id="exampleFormControlSelect1"
+                [(ngModel)]="customer.status"
+                (change)="handleStatusChange(customer.id, $event)"
               >
-                <option>Em Análise</option>
-                <option>Declaração Enviada</option>
-                <option>Concluído</option>
-                <option>Documento Pendente</option>
+                <option [value]="'Em Análise'">Em Análise</option>
+                <option [value]="'Declaração Enviada'">
+                  Declaração Enviada
+                </option>
+                <option [value]="'Concluído'">Concluído</option>
+                <option [value]="'Documento Pendente'">
+                  Documento Pendente
+                </option>
               </select>
             </td>
             <td>

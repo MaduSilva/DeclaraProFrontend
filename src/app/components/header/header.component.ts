@@ -12,6 +12,7 @@ import { AuthService } from '../../service/auth/auth.service';
 })
 export class HeaderComponent {
   isLoggedIn: boolean = false;
+  isCustomer: boolean = false;
 
   constructor(private router: Router, private authService: AuthService) {}
 
@@ -19,15 +20,31 @@ export class HeaderComponent {
     this.authService.isLoggedIn$.subscribe((loggedIn) => {
       this.isLoggedIn = loggedIn;
     });
+    this.authService.isCustomer$.subscribe((customer) => {
+      this.isCustomer = customer;
+    });
   }
 
   goToCustomers(): void {
     this.router.navigate(['/customers/']);
   }
 
+  goToHomeClientes(): void {
+    this.router.navigate(['/clientes-dashboard/']);
+  }
+
+  goToLoginCustomer(): void {
+    this.router.navigate(['/login-cliente']);
+  }
+
+  goToLoginAdmin(): void {
+    this.router.navigate(['/login']);
+  }
+
   logout() {
     this.authService.logout();
     this.isLoggedIn = false;
+    this.isCustomer = false;
     window.location.href = '/login';
   }
 }

@@ -4,7 +4,7 @@
       Adicionar novo cliente
     </button>
   </div>
-  <div class="card containerbody">
+  <div class="card">
     <app-add-customer-modal
       [visible]="showAddCustomerModal"
       [customerData]="customerData"
@@ -12,6 +12,11 @@
       (addCustomer)="addNewCustomer($event)"
     >
     </app-add-customer-modal>
+    <app-confirm-data-modal
+      *ngIf="showConfirmDataModal"
+      [customerData]="customerData"
+      (closeModal)="closeConfirmDataModal()"
+    ></app-confirm-data-modal>
     <app-confirm-delete-modal
       *ngIf="showConfirmDeleteModal"
       [customerName]="customerToDelete?.name"
@@ -19,7 +24,7 @@
       (closeModal)="closeConfirmDeleteModal()"
     >
     </app-confirm-delete-modal>
-    <div class="table">
+    <div class="table-responsive">
       <table class="table no-wrap mb-0">
         <thead>
           <tr>
@@ -38,16 +43,14 @@
               <h5 class="font-medium mb-0">{{ customer.name }}</h5>
             </td>
             <td>
-              <span class="text-muted">{{ customer.email }}</span
-              ><br />
+              <span class="text-muted">{{ customer.email }}</span>
             </td>
             <td>
               <span class="text-muted">{{ customer.phone }}</span>
             </td>
             <td>
               <select
-                class="form-control category-select"
-                id="exampleFormControlSelect1"
+                class="category-select"
                 [(ngModel)]="customer.status"
                 (change)="handleStatusChange(customer.id, $event)"
               >
@@ -64,14 +67,12 @@
             <td>
               <button
                 (click)="goToCustomerDetails(customer)"
-                type="button"
                 class="btn-circle btn-lg"
               >
                 <span class="material-icons">search</span>
               </button>
               <button
                 (click)="openConfirmDeleteModal(customer)"
-                type="button"
                 class="btn-circle btn-lg"
               >
                 <span class="material-icons">delete</span>
@@ -83,7 +84,6 @@
     </div>
   </div>
 
-  <!-- TODO: Criar um componente único pro footer -->
   <div class="footer">
     <p>&copy; 2024 - DeclaraPro</p>
   </div>

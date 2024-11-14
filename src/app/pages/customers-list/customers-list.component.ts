@@ -10,6 +10,7 @@ import {
 import { Router } from '@angular/router';
 import { ConfirmDeleteModalComponent } from './confirm-delete-modal/confirm-delete-modal.component';
 import { FormsModule } from '@angular/forms';
+import { ConfirmDataModalComponent } from './confirm-data-modal/confirm-data-modal.componen';
 
 @Component({
   selector: 'app-customers-list',
@@ -19,6 +20,7 @@ import { FormsModule } from '@angular/forms';
     AddCustomerModalComponent,
     ConfirmDeleteModalComponent,
     FormsModule,
+    ConfirmDataModalComponent,
   ],
   templateUrl: './customers-list.component.html',
   styleUrls: ['./customers-list.component.scss'],
@@ -27,6 +29,7 @@ export class CustomersListComponent implements OnInit {
   customers$: Observable<ICustomerData[]> | null = null;
   showAddCustomerModal = false;
   showConfirmDeleteModal = false;
+  showConfirmDataModal = false;
   customerData: ICustomerData = { ...DEFAULT_CUSTOMER_DATA };
   customerToDelete: ICustomerData | undefined;
 
@@ -51,7 +54,6 @@ export class CustomersListComponent implements OnInit {
 
   closeAddCustomerModal(): void {
     this.showAddCustomerModal = false;
-    this.customerData = { ...DEFAULT_CUSTOMER_DATA };
   }
 
   openConfirmDeleteModal(customer: ICustomerData): void {
@@ -64,6 +66,11 @@ export class CustomersListComponent implements OnInit {
     this.customerToDelete = undefined;
   }
 
+  closeConfirmDataModal(): void {
+    this.showConfirmDataModal = false;
+    this.customerData = { ...DEFAULT_CUSTOMER_DATA };
+  }
+
   goToCustomerDetails(customer: ICustomerData): void {
     this.router.navigate([`/customers/${customer.id}`], {
       state: { customer },
@@ -73,7 +80,12 @@ export class CustomersListComponent implements OnInit {
   addNewCustomer(customerData: any): void {
     this.customerService
       .addCustomer(customerData)
-      .pipe(switchMap(() => this.customerService.getCustomers()))
+      .pipe(
+        switchMap((addResponse) => {
+          this.customerData = addResponse.data;
+          return this.customerService.getCustomers();
+        })
+      )
       .subscribe({
         next: (response: any) => {
           const updatedCustomers = response.data;
@@ -81,8 +93,8 @@ export class CustomersListComponent implements OnInit {
             observer.next(updatedCustomers);
             observer.complete();
           });
+          this.showConfirmDataModal = true;
           this.closeAddCustomerModal();
-          alert('Cliente cadastrado com sucesso');
         },
         error: (error: any) => {
           alert(
@@ -130,7 +142,6 @@ export class CustomersListComponent implements OnInit {
             observer.complete();
           });
           this.closeConfirmDeleteModal();
-          alert('Cliente removido com sucesso');
         },
         error: (error: any) => {
           console.error('deleteCustomer error', error);

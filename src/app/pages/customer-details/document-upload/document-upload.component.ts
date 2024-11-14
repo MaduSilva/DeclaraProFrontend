@@ -54,10 +54,6 @@ export class DocumentUploadComponent implements OnInit {
     );
   }
 
-  renameDocument(document: any): void {
-    console.log(document);
-  }
-
   deleteDocument(customerId: number, documentId: number) {
     this.documentService.deleteDocument(customerId, documentId).subscribe(
       (response) => {

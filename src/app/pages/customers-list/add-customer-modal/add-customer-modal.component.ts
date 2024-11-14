@@ -94,7 +94,6 @@ export class AddCustomerModalComponent {
   @Output() close = new EventEmitter<void>();
   @Output() addCustomer = new EventEmitter<any>();
 
-  //TODO: Criar Interface pra esses caras
   statusOptions = [
     'Em Análise',
     'Declaração Enviada',

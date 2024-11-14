@@ -1,0 +1,18 @@
+<div class="tax-status-card">
+  <div class="user-info">
+    <h1 class="user-name">{{ (customer$ | async)?.name }}</h1>
+    <p class="tax-status">
+      Status:
+      <span class="status pending">{{ (customer$ | async)?.status }}</span>
+    </p>
+  </div>
+  <div class="status-details">
+    <p>Esse é o status da sua declaração do IRPF no momento.</p>
+    <a
+      href="mailto:contador@email.com?subject=Dúvida%20sobre%20declaração%20irpf&body=Olá!%20Eu%20tenho%20uma%20dúvida%20sobre%20minha%20declaração%20irpf..."
+      class="cta-button"
+    >
+      Contatar contador
+    </a>
+  </div>
+</div>

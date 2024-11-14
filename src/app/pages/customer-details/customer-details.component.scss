@@ -3,8 +3,54 @@
 .header {
   display: flex;
   align-items: center;
-  padding: 10px;
+  align-content: center;
+  justify-content: center;
+  flex-wrap: nowrap;
+  flex-direction: column-reverse;
 
+  h2 {
+    margin: 0;
+    color: white;
+    font-size: 30px;
+    flex-grow: 1;
+    text-align: left;
+  }
+
+  input {
+    margin-left: 10px;
+    margin-top: 10px;
+    font-size: 16px;
+    padding: 5px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    flex-grow: 1;
+  }
+
+  .edit-button {
+    background-color: $dp-blue-vivid;
+    border: none;
+    padding: 4px 8px;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 14px;
+    height: 30px;
+
+    mat-icon {
+      color: white;
+      font-size: 16px;
+    }
+
+    &:hover {
+      background-color: darken($dp-blue-vivid, 10%);
+    }
+
+    &:focus {
+      outline: none;
+    }
+  }
 }
 
 .customer-details-container {
@@ -26,16 +72,38 @@
     justify-content: space-between;
     width: 100%;
     padding: 10px 0;
-    border-bottom: 1px solid #ddd;
+    border-bottom: 1px solid $dp-gray;
 
     label {
       font-weight: bold;
-      color: $dp-black-light;
+      color: $dp-blue-dark;
     }
 
     p {
       margin: 0;
       color: $dp-black-light;
+    }
+
+    input,
+    select {
+      border: 1px solid $dp-gray;
+      border-radius: 4px;
+      padding: 8px 12px;
+      width: 70%;
+      font-size: 14px;
+
+      &:focus {
+        border-color: $dp-blue-vivid;
+        outline: none;
+      }
+
+      &::placeholder {
+        color: $dp-gray-dark;
+      }
+    }
+
+    select {
+      background-color: $dp-gray-light;
     }
   }
 }
@@ -52,6 +120,10 @@
   align-content: center;
   justify-content: center;
   align-items: center;
+
+  button {
+    margin-left: 10px;
+  }
 
   h3 {
     margin-bottom: 15px;

@@ -4,12 +4,36 @@
   </div>
   <div class="header-right">
     <button
-      *ngIf="isLoggedIn"
+      *ngIf="!isLoggedIn"
+      class="nav-options"
+      id="dashboardBtn"
+      (click)="goToLoginCustomer()"
+    >
+      Login Cliente
+    </button>
+    <button
+      *ngIf="!isLoggedIn"
+      class="nav-options"
+      id="dashboardBtn"
+      (click)="goToLoginAdmin()"
+    >
+      Login Admin
+    </button>
+    <button
+      *ngIf="isLoggedIn && !isCustomer"
       class="nav-options"
       id="dashboardBtn"
       (click)="goToCustomers()"
     >
       Dashboard
+    </button>
+    <button
+      *ngIf="isLoggedIn && isCustomer"
+      class="nav-options"
+      id="dashboardBtn"
+      (click)="goToHomeClientes()"
+    >
+      Home Cliente
     </button>
 
     <button *ngIf="isLoggedIn" class="nav-options" (click)="logout()">

@@ -32,6 +32,21 @@ export class CustomerService {
     );
   }
 
+  getClienteHomeData(
+    customerId: number
+  ): Observable<AxiosResponse<ICustomerData>> {
+    return from(
+      api.get<ICustomerData>(
+        ENDPOINTS.CUSTOMERS.GET_CLIENTES_HOME_DATA(customerId)
+      )
+    ).pipe(
+      catchError((error) => {
+        console.error('getClienteHomeData error', error);
+        throw error;
+      })
+    );
+  }
+
   addCustomer(newCustomer: any): Observable<AxiosResponse<any>> {
     return from(
       api.post<any>(ENDPOINTS.CUSTOMERS.ADD_CUSTOMER, newCustomer)
@@ -73,7 +88,6 @@ export class CustomerService {
     newPassword: string
   ): Observable<AxiosResponse<any>> {
     const body = { password: newPassword };
-    console.log(customerId);
     return from(
       api.patch<any>(
         `${ENDPOINTS.CUSTOMERS.RESET_PASSWORD_CUSTOMER(customerId)}`,

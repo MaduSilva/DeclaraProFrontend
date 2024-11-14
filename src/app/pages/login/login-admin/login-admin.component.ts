@@ -1,17 +1,17 @@
 import { Component } from '@angular/core';
-import { AuthService } from '../../service/auth/auth.service';
+import { AuthService } from '../../../service/auth/auth.service';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss'],
+  selector: 'app-login-admin',
+  templateUrl: './login-admin.component.html',
+  styleUrls: ['./login-admin.component.scss'],
   imports: [CommonModule, FormsModule],
   standalone: true,
 })
-export class LoginComponent {
+export class LoginAdminComponent {
   username: string = '';
   password: string = '';
   errorMessage: string = '';
@@ -19,7 +19,7 @@ export class LoginComponent {
   constructor(private authService: AuthService, private router: Router) {}
 
   onSubmit(): void {
-    this.authService.login(this.username, this.password).subscribe(
+    this.authService.loginAdmin(this.username, this.password).subscribe(
       () => {
         this.router.navigate(['/customers']);
       },

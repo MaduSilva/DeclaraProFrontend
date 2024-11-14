@@ -9,7 +9,7 @@ export interface ICustomerData {
   birthDate: string;
   status: string;
   documents?: IDocumentData[];
-  password: string;
+  raw_password?: string;
 }
 
 export const DEFAULT_CUSTOMER_DATA: ICustomerData = {
@@ -20,5 +20,4 @@ export const DEFAULT_CUSTOMER_DATA: ICustomerData = {
   birthDate: '',
   status: '',
   id: 0,
-  password: ''
 };

@@ -6,9 +6,6 @@
       [(ngModel)]="editableCustomer.name"
       placeholder="Nome"
     />
-    <button class="edit-button" (click)="toggleEditMode()">
-      <mat-icon>{{ isEditing ? "close" : "edit" }}</mat-icon>
-    </button>
   </div>
 
   <div class="customer-info">
@@ -47,7 +44,7 @@
       <input type="date" [(ngModel)]="editableCustomer.birthDate" />
     </ng-container>
     <ng-template #viewBirthDate>
-      <p>{{ (customer$ | async)?.birthDate }}</p>
+      <p>{{ (customer$ | async)?.birthDate | date : "dd/MM/yyyy" }}</p>
     </ng-template>
   </div>
 
@@ -76,11 +73,18 @@
   </button>
 
   <div class="credentials-box">
-    <h3>Credenciais de Acesso do Cliente</h3>
-
-    <button mat-raised-button color="accent" (click)="openResetPasswordModal()">
-      Redefinir Senha
-    </button>
+    <div>
+      <button
+        mat-raised-button
+        color="accent"
+        (click)="openResetPasswordModal()"
+      >
+        Redefinir Senha
+      </button>
+      <button mat-raised-button color="accent" (click)="toggleEditMode()">
+        {{ isEditing ? "Cancelar" : "Editar dados" }}
+      </button>
+    </div>
   </div>
 
   <div *ngIf="isPasswordResetModalOpen" class="password-reset-modal">

@@ -1,8 +1,8 @@
 <div class="login-container">
-  <h2>Login</h2>
+  <h2>Login de Cliente</h2>
   <form (submit)="onSubmit()">
     <div class="input-group">
-      <label for="username">Username:</label>
+      <label for="username">Usuário:</label>
       <input
         type="text"
         id="username"
@@ -13,7 +13,7 @@
     </div>
 
     <div class="input-group">
-      <label for="password">Password:</label>
+      <label for="password">Senha:</label>
       <input
         type="password"
         id="password"
@@ -23,7 +23,7 @@
       />
     </div>
 
-    <button type="submit">Login</button>
+    <button type="submit">Entrar</button>
     <p *ngIf="errorMessage" class="error">{{ errorMessage }}</p>
   </form>
 </div>

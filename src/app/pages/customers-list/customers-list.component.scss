@@ -1,5 +1,11 @@
 @import '../../styles/colors.scss';
 
+.table-responsive {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  margin-bottom: 15px;
+}
+
 .container {
   max-width: 1200px;
   margin: 0 auto;
@@ -8,6 +14,7 @@
   .buttons {
     display: flex;
     justify-content: flex-end;
+    margin-bottom: 15px;
 
     button {
       background-color: transparent;
@@ -18,11 +25,17 @@
     }
 
     .button-add-user {
-      background-color: $dp-gray;
-      border: none;
+      background-color: $dp-gray-light;
+      border: 1px solid $dp-gray-dark;
       padding: 8px 16px;
       border-radius: 5px;
       cursor: pointer;
+      font-size: 16px;
+      transition: background-color 0.3s;
+
+      &:hover {
+        background-color: darken($dp-gray-light, 10%);
+      }
     }
 
 
@@ -37,6 +50,7 @@
     border-radius: 5px;
     cursor: pointer;
     font-size: 16px;
+    transition: background-color 0.3s;
 
     &:hover {
       background-color: darken($dp-blue-dark, 10%);
@@ -44,10 +58,11 @@
   }
 
   .card {
-    border: 1px solid $dp-gray;
-    border-radius: 5px;
+    border: 1px solid $dp-gray-dark;
+    border-radius: 8px;
     margin-top: 20px;
     overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 
     .card-body {
       padding: 20px;
@@ -71,12 +86,12 @@
       tbody {
         tr {
           &:nth-child(even) {
-            background-color: $dp-gray;
+            background-color: $dp-gray-light;
           }
 
           td {
             padding: 12px 15px;
-            border-top: 1px solid $dp-gray;
+            border-top: 1px solid $dp-gray-light;
 
             .text-muted {
               color: $dp-gray-dark;
@@ -87,10 +102,18 @@
               padding: 8px;
               border-radius: 4px;
               border: 1px solid $dp-gray;
+              font-size: 14px;
+              background-color: $dp-gray-light;
+              transition: background-color 0.3s;
+
+              &:focus {
+                border-color: $dp-blue-dark;
+                background-color: $dp-gray-light;
+              }
             }
 
             .btn-circle {
-              border-radius: 100%;
+              border-radius: 50%;
               width: 40px;
               height: 40px;
               padding: 10px;
@@ -98,16 +121,18 @@
               border: 1px solid $dp-blue-dark;
               color: $dp-blue-dark;
               cursor: pointer;
+              transition: background-color 0.3s, border-color 0.3s;
 
               &:hover {
                 background-color: $dp-blue;
+                border-color: $dp-blue;
               }
 
               &.btn-lg {
                 width: 50px;
                 height: 50px;
                 margin-left: 5px;
-                padding: 5px 5px;
+                padding: 5px;
               }
             }
           }
@@ -117,9 +142,11 @@
   }
 
   .footer {
-
+    
     padding: 10px;
     text-align: center;
     margin-top: 20px;
+    font-size: 14px;
+    color: $dp-gray-dark;
   }
 }

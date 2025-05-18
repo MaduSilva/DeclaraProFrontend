@@ -41,6 +41,10 @@ export class HeaderComponent {
     this.router.navigate(['/login']);
   }
 
+  goToHome(): void {
+    this.router.navigate(['/']);
+  }
+
   logout() {
     this.authService.logout();
     this.isLoggedIn = false;

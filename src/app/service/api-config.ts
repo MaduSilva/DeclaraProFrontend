@@ -1,8 +1,8 @@
 import axios from 'axios';
 
 const api = axios.create({
-  //baseURL: 'http://127.0.0.1:8000'
-  baseURL: 'https://declarapro.pythonanywhere.com',
+  //baseURL: 'http://127.0.0.1:8000/api'
+  baseURL: 'https://madusilva.pythonanywhere.com/api',
 });
 
 api.interceptors.request.use(

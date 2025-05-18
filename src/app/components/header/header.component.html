@@ -1,6 +1,6 @@
 <header>
   <div class="header-left">
-    <img src="assets/DeclaraProIcon.png" />
+    <img src="assets/DeclaraProIconWhite.png" (click)="goToHome()" />
   </div>
   <div class="header-right">
     <button
@@ -17,7 +17,7 @@
       id="dashboardBtn"
       (click)="goToLoginAdmin()"
     >
-      Login Admin
+      Login Contador
     </button>
     <button
       *ngIf="isLoggedIn && !isCustomer"

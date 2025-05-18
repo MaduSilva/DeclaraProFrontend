@@ -1,0 +1,125 @@
+@import '../../../styles/colors.scss';
+
+.calculator-wrapper {
+
+  background: $dp-gray-light;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+  flex-wrap: wrap;
+}
+
+.calculator-container {
+  background: white;
+  border-radius: 24px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  padding: 2.5rem;
+  gap: 3rem;
+  transition: all 0.3s ease-in-out;
+}
+
+h3 {
+  font-size: 1.5rem;
+  color: $dp-blue-dark;
+  font-weight: 500;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.form-group {
+  margin-bottom: 5px;
+}
+
+label {
+  font-size: 0.875rem;
+  color: $dp-gray-dark;
+}
+
+input[type="number"] {
+  padding: 0.75rem 1rem;
+  border: none;
+  border-radius: 12px;
+  background-color: #f1f5f9;
+  font-size: 1rem;
+  color: #2d3748;
+}
+
+input:focus {
+  outline: none;
+  background-color: #e2e8f0;
+}
+
+.button-add-user {
+  margin-top: 1rem;
+  padding: 0.75rem;
+  border: none;
+  border-radius: 16px;
+  background: $dp-blue-dark;
+  color: #fff;
+  font-weight: 500;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.result-section {
+  background-color: #f8fafc;
+  border-radius: 20px;
+  padding: 2rem;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.04);
+}
+
+.result-section h2 {
+  font-size: 1.4rem;
+  color: #2d3748;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.result-section ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.result-section li {
+  font-size: 1rem;
+  margin-bottom: 0.75rem;
+  color: #4a5568;
+}
+
+.result-section li strong {
+  color: #2d3748;
+}
+
+.highlight {
+  margin-top: 1.5rem;
+  padding: 1rem;
+  border-radius: 12px;
+  font-weight: 600;
+  text-align: center;
+}
+
+.highlight.refund {
+  background: #d1fae5;
+  color: #065f46;
+}
+
+.highlight.debt {
+  background: #fee2e2;
+  color: #991b1b;
+}
+
+.highlight.neutral {
+  background: #e2e8f0;
+  color: #4a5568;
+}
+
+input.ng-invalid.ng-touched,
+select.ng-invalid.ng-touched,
+textarea.ng-invalid.ng-touched {
+  border: 2px solid #cf3c3f;
+  background-color: #fff0f0;
+}

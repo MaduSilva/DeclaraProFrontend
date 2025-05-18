@@ -5,9 +5,12 @@ header {
     justify-content: space-between;
     align-items: center;
     padding: 10px 20px;
+    background-color: $dp-blue-dark;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 
     .header-left img {
         width: 100px;
+        cursor: pointer;
     }
 
     .header-right {
@@ -15,14 +18,15 @@ header {
     }
 
     .nav-options {
-        background-color: transparent;
+        background-color: $dp-gray-dark;
         color: black;
-        border: none;
+        border-radius: 30px;
+        margin-left: 10px;
+        border: 1px solid $dp-gray-dark;
         padding: 8px 16px;
-        border-radius: 5px;
         cursor: pointer;
-        color: $dp-blue-dark;
-        text-transform: uppercase;
+        outline: transparent;
+        color: white;
 
     }
 }

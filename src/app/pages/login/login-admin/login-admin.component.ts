@@ -28,4 +28,8 @@ export class LoginAdminComponent {
       }
     );
   }
+
+  goToHome(): void {
+    this.router.navigate(['/']);
+  }
 }

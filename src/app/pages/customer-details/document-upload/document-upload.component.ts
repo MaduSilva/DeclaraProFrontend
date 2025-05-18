@@ -10,23 +10,30 @@ import {
   ICustomerData,
 } from '../../../types/CustomerTypes';
 import { IDocumentData } from '../../../types/DocumentTypes';
+import { FormsModule } from '@angular/forms';
+
+interface DocumentProps {
+  id: number;
+  name: string;
+  file?: string;
+  viewingDocumentUrl?: SafeResourceUrl;
+  newName?: string;
+  extension?: string;
+}
 
 @Component({
   selector: 'app-document-upload',
   templateUrl: './document-upload.component.html',
   styleUrls: ['./document-upload.component.scss'],
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, FormsModule],
 })
 export class DocumentUploadComponent implements OnInit {
   @Input() customer: ICustomerData = DEFAULT_CUSTOMER_DATA;
   selectedFile: File | null = null;
-  documents: Array<{
-    id: number;
-    name: string;
-    viewingDocumentUrl?: SafeResourceUrl;
-    file?: string;
-  }> = [];
+  editingDocumentId: number | null = null;
+
+  documents: DocumentProps[] = [];
   @ViewChild('successTemplate', { static: true }) successTemplate: any;
 
   constructor(
@@ -77,9 +84,12 @@ export class DocumentUploadComponent implements OnInit {
   ngOnInit() {
     if (this.customer && this.customer.documents) {
       this.documents = this.customer.documents
-        .map((doc: IDocumentData) => {
+        .map((doc: IDocumentData): DocumentProps => {
+          const extension = doc.name.split('.').pop()?.toLowerCase() || '';
           return {
             ...doc,
+            newName: doc.name,
+            extension,
             viewingDocumentUrl: doc.file
               ? this.sanitizer.bypassSecurityTrustResourceUrl(
                   `${environment.apiUrl}${doc.file}`
@@ -96,6 +106,12 @@ export class DocumentUploadComponent implements OnInit {
       const formData = new FormData();
       formData.append('file', this.selectedFile);
       formData.append('name', this.selectedFile.name);
+
+      console.log(formData);
+      const extension = this.selectedFile.name.substring(
+        this.selectedFile.name.lastIndexOf('.')
+      );
+      formData.append('document_type', extension);
 
       this.documentService.addDocument(formData, this.customer.id).subscribe({
         next: (response) => {
@@ -117,5 +133,27 @@ export class DocumentUploadComponent implements OnInit {
         },
       });
     }
+  }
+
+  startRenaming(document: any): void {
+    this.editingDocumentId = document.id;
+    document.newName = document.name;
+  }
+
+  saveRenamedDocument(document: any): void {
+    if (!document.newName || document.newName.trim() === '') return;
+
+    this.documentService
+      .renameDocument(this.customer.id, document.id, document.newName)
+      .subscribe({
+        next: () => {
+          this.editingDocumentId = null;
+          console.log(document.viewingDocumentUrl);
+          window.location.reload();
+        },
+        error: (err) => {
+          console.error('Erro ao renomear documento', err);
+        },
+      });
   }
 }

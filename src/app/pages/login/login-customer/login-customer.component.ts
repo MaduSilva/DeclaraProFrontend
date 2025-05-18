@@ -28,4 +28,8 @@ export class LoginCustomerComponent {
       }
     );
   }
+
+  goToHome(): void {
+    this.router.navigate(['/']);
+  }
 }

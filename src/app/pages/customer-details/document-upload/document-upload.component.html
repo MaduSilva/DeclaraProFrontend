@@ -15,34 +15,53 @@
     <ul>
       <li *ngFor="let document of documents">
         <div class="document-item">
-          <span>{{ document.name }}</span>
+          <ng-container
+            *ngIf="editingDocumentId === document.id; else showName"
+          >
+            <input
+              [(ngModel)]="document.newName"
+              class="rename-input"
+              [placeholder]="document.name"
+            />
+          </ng-container>
+
+          <ng-template #showName>
+            <span>{{ document.name }}</span>
+          </ng-template>
 
           <div class="documents-buttons">
             <button (click)="downloadDocument(document)" type="button">
               Baixar Documento
             </button>
 
-            <button (click)="deleteDocument(customer.id, document.id)">
+            <button
+              (click)="deleteDocument(customer.id, document.id)"
+              type="button"
+            >
               Deletar
+            </button>
+
+            <button
+              *ngIf="editingDocumentId !== document.id"
+              (click)="startRenaming(document)"
+              type="button"
+            >
+              Renomear
+            </button>
+
+            <button
+              *ngIf="editingDocumentId === document.id"
+              (click)="saveRenamedDocument(document)"
+              type="button"
+            >
+              Salvar
             </button>
           </div>
 
-          <img
-            *ngIf="
-              document.viewingDocumentUrl &&
-              (document.name.endsWith('.jpg') ||
-                document.name.endsWith('.png') ||
-                document.name.endsWith('.jpeg'))
-            "
-            [src]="document.viewingDocumentUrl"
-            alt="Document Image"
-            class="small-image"
-          />
+          <img [src]="document.viewingDocumentUrl" class="small-image" />
 
           <div
-            *ngIf="
-              document.viewingDocumentUrl && document.name.endsWith('.pdf')
-            "
+            *ngIf="document.viewingDocumentUrl && document.extension === 'pdf'"
           >
             <iframe
               [src]="document.viewingDocumentUrl"

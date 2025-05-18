@@ -1,0 +1,157 @@
+<div class="calculator-wrapper">
+  <div class="calculator-container">
+    <div class="calculator-info">
+      <h3>Calculadora IRPF</h3>
+      <p class="disclaimer">
+        Esta é apenas uma simulação e os valores não substituem o cálculo
+        oficial da Receita Federal.
+      </p>
+
+      <form
+        (ngSubmit)="calculate(calculatorData, calcForm)"
+        #calcForm="ngForm"
+        class="form-simulador"
+      >
+        <div class="form-group">
+          <label for="income">Renda (R$)</label>
+          <input
+            type="number"
+            id="income"
+            name="income"
+            class="form-control"
+            required
+            [(ngModel)]="calculatorData.income"
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="inss">INSS (R$)</label>
+          <input
+            type="number"
+            id="inss"
+            name="inss"
+            class="form-control"
+            required
+            [(ngModel)]="calculatorData.inss"
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="private_pension">Previdência Privada (R$)</label>
+          <input
+            type="number"
+            id="private_pension"
+            name="private_pension"
+            class="form-control"
+            [(ngModel)]="calculatorData.private_pension"
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="paid_irrf">IRRF Pago (R$)</label>
+          <input
+            type="number"
+            id="paid_irrf"
+            name="paid_irrf"
+            class="form-control"
+            [(ngModel)]="calculatorData.paid_irrf"
+            required
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="dependents">Dependentes</label>
+          <input
+            type="number"
+            id="dependents"
+            name="dependents"
+            class="form-control"
+            [(ngModel)]="calculatorData.dependents"
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="education">Educação (R$)</label>
+          <input
+            type="number"
+            id="education"
+            name="education"
+            class="form-control"
+            [(ngModel)]="calculatorData.education"
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="health">Saúde (R$)</label>
+          <input
+            type="number"
+            id="health"
+            name="health"
+            class="form-control"
+            [(ngModel)]="calculatorData.health"
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="alimony">Pensão Alimentícia (R$)</label>
+          <input
+            type="number"
+            id="alimony"
+            name="alimony"
+            class="form-control"
+            [(ngModel)]="calculatorData.alimony"
+          />
+        </div>
+
+        <div class="form-group">
+          <button
+            type="submit"
+            class="button-add-user"
+            [disabled]="!calcForm.valid"
+          >
+            Calcular
+          </button>
+        </div>
+      </form>
+    </div>
+
+    <div *ngIf="result && formSubmitted && calcForm.valid" class="result-card">
+      <h3>Resultado da Simulação</h3>
+
+      <div
+        class="highlight"
+        [ngClass]="{
+          refund: result.isRefund && result.amountDifference !== 0,
+          debt: !result.isRefund && result.amountDifference !== 0,
+          neutral: result.amountDifference === 0
+        }"
+      >
+        <ng-container *ngIf="result.amountDifference === 0">
+          Com base nas informações que você inseriu,
+          <strong
+            >aparentemente <br />
+            você não precisa declarar o IRPF</strong
+          >
+          este ano.
+        </ng-container>
+
+        <ng-container *ngIf="result.isRefund && result.amountDifference !== 0">
+          De acordo com os dados informados, você
+          <strong
+            >pode ter direito a uma restituição de R$
+            {{ result.amountDifference | number : "1.2-2" }}</strong
+          >.
+        </ng-container>
+
+        <ng-container *ngIf="!result.isRefund && result.amountDifference !== 0">
+          Segundo a nossa simulação, você
+          <strong
+            >poderá ter que pagar R$
+            {{ result.amountDifference | number : "1.2-2" }}</strong
+          >
+          de Imposto de Renda.
+        </ng-container>
+      </div>
+    </div>
+  </div>
+</div>

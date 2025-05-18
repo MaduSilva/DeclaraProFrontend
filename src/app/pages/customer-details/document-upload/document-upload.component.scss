@@ -6,7 +6,6 @@
   border-radius: 8px;
   padding: 2rem;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  min-width: 800px;
   margin: 2rem auto;
   display: flex;
   flex-direction: column;
@@ -22,8 +21,17 @@
 
 .documents-buttons {
   display: flex;
-  width: 40%;
-  justify-content: space-evenly;
+
+
+  justify-content: center;
+  margin-right: 10px;
+  align-content: center;
+  align-items: baseline;
+
+  button {
+    margin-right: 10px;
+  }
+
 }
 
 h3 {

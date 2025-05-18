@@ -38,4 +38,22 @@ export class DocumentService {
       })
     );
   }
+
+  renameDocument(
+    customerId: number,
+    documentId: number,
+    name: string
+  ): Observable<AxiosResponse<any>> {
+    return from(
+      api.put<any>(
+        ENDPOINTS.DOCUMENTS.RENAME_DOCUMENT(customerId, documentId),
+        { name }
+      )
+    ).pipe(
+      catchError((error) => {
+        console.error('renameDocument error', error);
+        throw error;
+      })
+    );
+  }
 }

@@ -29,6 +29,10 @@ export class HeaderComponent {
     this.router.navigate(['/customers/']);
   }
 
+  goToCustomersDashboard(): void {
+    this.router.navigate(['/customers/dashboard']);
+  }
+
   goToHomeClientes(): void {
     this.router.navigate(['/clientes-dashboard/']);
   }

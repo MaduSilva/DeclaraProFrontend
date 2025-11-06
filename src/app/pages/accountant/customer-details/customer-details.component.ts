@@ -1,9 +1,9 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { ICustomerData } from '../../types/CustomerTypes';
-import { DocumentUploadComponent } from './document-upload/document-upload.component';
+import { ICustomerData } from '../../../types/CustomerTypes';
+import { DocumentUploadComponent } from './components/document-upload/document-upload.component';
 import { CommonModule } from '@angular/common';
 import { Observable, map } from 'rxjs';
-import { CustomerService } from '../../service/customer.service';
+import { CustomerService } from '../../../service/customer.service';
 import { FormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';

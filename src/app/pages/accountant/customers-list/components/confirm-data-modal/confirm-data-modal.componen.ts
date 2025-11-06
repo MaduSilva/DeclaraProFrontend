@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { ICustomerData } from '../../../types/CustomerTypes';
+import { ICustomerData } from '../../../../../types/CustomerTypes';
 
 @Component({
   selector: 'app-confirm-data-modal',

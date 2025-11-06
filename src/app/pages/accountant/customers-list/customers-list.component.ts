@@ -1,16 +1,16 @@
 import { Component, OnInit } from '@angular/core';
-import { CustomerService } from '../../service/customer.service';
+import { CustomerService } from '../../../service/customer.service';
 import { CommonModule } from '@angular/common';
 import { Observable, map, switchMap } from 'rxjs';
-import { AddCustomerModalComponent } from './add-customer-modal/add-customer-modal.component';
+import { AddCustomerModalComponent } from './components/add-customer-modal/add-customer-modal.component';
 import {
   DEFAULT_CUSTOMER_DATA,
   ICustomerData,
-} from '../../types/CustomerTypes';
+} from '../../../types/CustomerTypes';
 import { Router } from '@angular/router';
-import { ConfirmDeleteModalComponent } from './confirm-delete-modal/confirm-delete-modal.component';
+import { ConfirmDeleteModalComponent } from './components/confirm-delete-modal/confirm-delete-modal.component';
 import { FormsModule } from '@angular/forms';
-import { ConfirmDataModalComponent } from './confirm-data-modal/confirm-data-modal.componen';
+import { ConfirmDataModalComponent } from './components/confirm-data-modal/confirm-data-modal.componen';
 
 @Component({
   selector: 'app-customers-list',

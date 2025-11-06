@@ -5,38 +5,42 @@
   <div class="header-right">
     <button
       *ngIf="!isLoggedIn"
-      class="nav-options"
-      id="dashboardBtn"
+      class="btn btn-outline"
       (click)="goToLoginCustomer()"
     >
       Login Cliente
     </button>
     <button
       *ngIf="!isLoggedIn"
-      class="nav-options"
-      id="dashboardBtn"
+      class="btn btn-secondary"
       (click)="goToLoginAdmin()"
     >
       Login Contador
     </button>
     <button
       *ngIf="isLoggedIn && !isCustomer"
-      class="nav-options"
-      id="dashboardBtn"
+      class="btn"
       (click)="goToCustomers()"
+    >
+      Lista de Clientes
+    </button>
+
+    <button
+      *ngIf="isLoggedIn && !isCustomer"
+      class="btn"
+      (click)="goToCustomersDashboard()"
     >
       Dashboard
     </button>
     <button
       *ngIf="isLoggedIn && isCustomer"
-      class="nav-options"
-      id="dashboardBtn"
+      class="btn"
       (click)="goToHomeClientes()"
     >
       Home Cliente
     </button>
 
-    <button *ngIf="isLoggedIn" class="nav-options" (click)="logout()">
+    <button *ngIf="isLoggedIn" class="btn logout" (click)="logout()">
       <span class="material-icons">logout</span>
     </button>
   </div>

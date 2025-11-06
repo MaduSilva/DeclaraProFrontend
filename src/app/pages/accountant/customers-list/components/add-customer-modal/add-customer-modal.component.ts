@@ -4,7 +4,7 @@ import { CommonModule } from '@angular/common';
 import {
   DEFAULT_CUSTOMER_DATA,
   ICustomerData,
-} from '../../../types/CustomerTypes';
+} from '../../../../../types/CustomerTypes';
 
 @Component({
   selector: 'app-add-customer-modal',

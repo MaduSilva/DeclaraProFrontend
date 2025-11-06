@@ -1,15 +1,15 @@
 import { Component, Input, OnInit, ViewChild } from '@angular/core';
-import { DocumentService } from '../../../service/document.service';
+import { DocumentService } from '../../../../../service/document.service';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
-import { environment } from '../../../enviroment';
+import { environment } from '../../../../../enviroment';
 import { CommonModule } from '@angular/common';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import {
   DEFAULT_CUSTOMER_DATA,
   ICustomerData,
-} from '../../../types/CustomerTypes';
-import { IDocumentData } from '../../../types/DocumentTypes';
+} from '../../../../../types/CustomerTypes';
+import { IDocumentData } from '../../../../../types/DocumentTypes';
 import { FormsModule } from '@angular/forms';
 
 interface DocumentProps {

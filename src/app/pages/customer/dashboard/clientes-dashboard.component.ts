@@ -1,9 +1,9 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { CustomerService } from '../../service/customer.service';
-import { ICustomerData } from '../../types/CustomerTypes';
+import { CustomerService } from '../../../service/customer.service';
+import { ICustomerData } from '../../../types/CustomerTypes';
 import { Observable, map } from 'rxjs';
-import { AuthService } from '../../service/auth/auth.service';
+import { AuthService } from '../../../service/auth/auth.service';
 import { Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 

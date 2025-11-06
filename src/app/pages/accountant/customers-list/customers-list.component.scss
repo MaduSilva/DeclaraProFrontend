@@ -1,9 +1,9 @@
-@import '../../styles/colors.scss';
+@import '../../../styles/colors.scss';
 
 .container {
-
   margin: 0 auto;
   padding: 20px;
+  min-height: calc(64vh - 40px);
 
   .buttons {
     button {

@@ -1,12 +1,13 @@
 import { Routes } from '@angular/router';
-import { CustomersListComponent } from './pages/customers-list/customers-list.component';
-import { CustomerDetailsComponent } from './pages/customer-details/customer-details.component';
+import { CustomersListComponent } from './pages/accountant/customers-list/customers-list.component';
+import { CustomerDetailsComponent } from './pages/accountant/customer-details/customer-details.component';
+import { CustomersDashboardComponent } from './pages/accountant/customers-dashboard/customers-dashboard.component';
 import { AuthGuard } from './service/auth/auth.guard';
 import { LoginGuard } from './service/auth/login.guard';
 import { LoginCustomerComponent } from './pages/login/login-customer/login-customer.component';
 import { LoginAdminComponent } from './pages/login/login-admin/login-admin.component';
-import { ClientesDashboardComponent } from './pages/clientes-dashboard/clientes-dashboard.component';
-import { CalculatorComponent } from './pages/clientes-dashboard/calculator/calculator.component';
+import { ClientesDashboardComponent } from './pages/customer/dashboard/clientes-dashboard.component';
+import { CalculatorComponent } from './pages/customer/calculator/calculator.component';
 import { HomeComponent } from './pages/home/home.component';
 import { PrivacyPolicyComponent } from './pages/privacy-policy/privacy-policy.component';
 
@@ -34,6 +35,11 @@ export const routes: Routes = [
   {
     path: 'customers',
     component: CustomersListComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'customers/dashboard',
+    component: CustomersDashboardComponent,
     canActivate: [AuthGuard],
   },
   {
